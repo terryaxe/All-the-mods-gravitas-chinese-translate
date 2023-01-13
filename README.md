@@ -8,6 +8,9 @@ CurseForge|Modrinth|Modpack Version|Status
 
 # 仓库统计数据
   ![Alt]()
+
+# 关于我们
+  [![Website]https://shields.io/website?up_message=vmct-cn.top&url=http://vmct-cn.top&label=Website](http://vmct-cn.top)
   
 <!--
   仓库统计数据等都需要自己填写，只是个模板而已，不会写那么细。
