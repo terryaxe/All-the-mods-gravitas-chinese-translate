@@ -12,6 +12,10 @@ labelPRBasedOnFilePath:
   .github:
     - .github/*
 
+  resourcepacks:
+    - resoursepacks/*
+
+
   # Complex: Add 'area/core' label to any change within the 'core' package
   ftbquest:
     - config/ftbquest/*
