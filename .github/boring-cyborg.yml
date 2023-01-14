@@ -3,26 +3,27 @@
 labelPRBasedOnFilePath:
   # Add 'label1' to any changes within 'example' folder or any subfolders
   need review:
-    - config/*
-    - .github/*
-    - kubejs/*
-    - script/*
+    - config/**
+    - .github/**
+    - kubejs/**
+    - script/**
 
   # Add 'label2' to any file changes within 'example2' folder
   .github:
-    - .github/*
+    - .github/**
 
-  resourcepacks:
-    - resoursepacks/*
-
+  resource:
+    - resoursepacks/**
+    - resourse/**
+    - kubejs/assets/**
 
   # Complex: Add 'area/core' label to any change within the 'core' package
   ftbquest:
-    - config/ftbquest/*
+    - config/ftbquest/**
 
   # Add 'test' label to any change to *.spec.js files within the source dir
-  test:
-    - src/**/*.spec.js
+  #test:
+  #  - src/**/*.spec.js
 
 ##### Greetings ########################################################################################################
 # Comment to be posted to welcome users when they open their first PR
