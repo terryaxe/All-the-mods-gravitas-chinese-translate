@@ -3,27 +3,29 @@
 labelPRBasedOnFilePath:
   # Add 'label1' to any changes within 'example' folder or any subfolders
   need review:
-    - "config/**"
-    - ".github/**"
-    - "kubejs/**"
-    - "script/**"
+    - "Patch-Pack-CN/**"
 
   # Add 'label2' to any file changes within 'example2' folder
   .github:
     - ".github/**"
 
   resource:
-    - "resourcepacks/**"
-    - "resources/**"
-    - "kubejs/assets/**"
+    - "Patch-Pack-CN/**"
 
   # Complex: Add 'area/core' label to any change within the 'core' package
   ftbquest:
-    - "config/ftbquest/**"
+    - "Patch-Pack-CN/**"
 
   # Add 'test' label to any change to *.spec.js files within the source dir
   #test:
   #  - src/**/*.spec.js
+
+  # Modpack Version label 此项非必要，若需要多版本同时汉化，请打开此项
+  #example
+  #1.0:
+  #  - "Patch-Pack-CN/**"
+  #1.1:
+  #  - "Patch-Pack-CN/**"
   
 # Various Flags to control behaviour of the "Labeler"
 labelerFlags:
