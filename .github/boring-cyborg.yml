@@ -10,11 +10,13 @@ labelPRBasedOnFilePath:
     - ".github/**"
 
   resource:
-    - "Patch-Pack-CN/**"
+    - "Patch-Pack-CN/resouce/**"
+    - "Patch-Pack-CN/resoucepacks/**"
+#   - "Patch-Pack-CN/resoucepacks/**"
 
   # Complex: Add 'area/core' label to any change within the 'core' package
   ftbquest:
-    - "Patch-Pack-CN/**"
+    - "Patch-Pack-CN/config/ftbquests/**"
 
   # Add 'test' label to any change to *.spec.js files within the source dir
   #test:
