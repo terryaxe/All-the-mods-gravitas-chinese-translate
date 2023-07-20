@@ -4,7 +4,7 @@ import subprocess
 
 def run_packaging():
     # 读取packer_config.json文件
-    with open('packer_config.json', 'r') as f:
+    with open('source_files/packer_config.json', 'r') as f:
         config = json.load(f)
     
     # 获取要打包的内容或路径
