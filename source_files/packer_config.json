@@ -1,0 +1,7 @@
+{
+    "paths": [
+      "example/examplefile.cactus",
+      "examplepath/examplepath2/examplefile2.cactus",
+      "examplepath3/examplepath4"
+    ]
+  }
