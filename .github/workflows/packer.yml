@@ -24,7 +24,7 @@ jobs:
           python-version: 3.8
 
       - name: Run packer.py
-        run: python packer.py
+        run: python source_files/packer.py
       
       - name: Upload artifact
         uses: actions/upload-artifact@v2
