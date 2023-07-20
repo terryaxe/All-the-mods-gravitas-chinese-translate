@@ -1,4 +1,4 @@
-name: Package
+name: Packer
 
 on:
   push:
@@ -8,24 +8,29 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
     steps:
-    - name: Check out code
-      uses: actions/checkout@v3
-
-    - name: Set up Python
-      uses: actions/setup-python@v2.2.2
-      with:
-        python-version: 3.x
-
-    - name: Install dependencies
-      run: pip install -r requirements.txt
-
-    - name: Run package script
-      run: python source_files/packer.py
-
-    - name: Create artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: package-artifact
-        path: patch-out
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      
+      - name: Run packer.py
+        run: python packer.py
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: packaged-files
+          path: patch-out
