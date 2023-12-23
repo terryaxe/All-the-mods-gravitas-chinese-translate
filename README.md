@@ -1,10 +1,9 @@
-# Modpack Name 汉化补丁
-CurseForge|Modrinth|Modpack Version|Status
-:-|:-|:-|:-
-[ModpackName]()|[ModpackName]()|Version|*Active*|
+# 某整合包汉化补丁
+CurseForge|游戏版本|状态
+:-|:-|:-
+[链接]()|版本|维护中|
 # 译者
 查看贡献者列表以获得完整译者名单
-# 鸣谢
 
 # 仓库统计数据
   ![Alt]()
