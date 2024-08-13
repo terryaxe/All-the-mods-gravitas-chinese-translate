@@ -1,17 +1,17 @@
 labelPRBasedOnFilePath:
   need review:
-    - "Patch-Pack-CN/**"
+    - "CNPack/**"
 
   .github:
     - ".github/**"
 
   resource:
-    - "Patch-Pack-CN/kubejs/assets/**"
-    - "Patch-Pack-CN/config/fancymenu/**"
-#   - "Patch-Pack-CN/resoucepacks/**"
+    - "CNPack/kubejs/assets/**"
+    - "CNPack/config/fancymenu/**"
+#   - "CNPack/resoucepacks/**"
 
   ftbquest:
-    - "Patch-Pack-CN/config/ftbquests/**"
+    - "CNPack/config/ftbquests/**"
   
   
 labelerFlags:
