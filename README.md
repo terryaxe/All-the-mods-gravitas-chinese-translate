@@ -4,13 +4,13 @@
 
 CurseForge|加载器|整合包版本|汉化维护状态
 :-|:-|:-|:-
-[链接](原链接)|模组加载器|mc1.版本 版本|*翻译中*|
+[链接](原链接)|模组加载器|mc版本 整合包版本|*翻译中*|
 
 ---
 
 汉化项目：[Paratranz](https://paratranz.cn/projects/项目)
 
-汉化发布：[VM汉化组官网](https://beta.vmct-cn.top/modpacks/项目)
+汉化发布：[VM汉化组官网](https://vmct-cn.top/modpacks/项目)
 
 项目主管 @[某某](https://github.com/某某)
 
@@ -41,14 +41,18 @@ CurseForge|加载器|整合包版本|汉化维护状态
 
 ## 2. 开始使用
 
-工作流有两种功能：Paratranz同步到github仓库，github仓库同步到Paratranz
+我们的工作流有两种功能：Paratranz同步到github仓库，和github仓库同步到Paratranz。
 
-其中，Paratranz同步到GitHub仓库工作流每隔2小时，在整点会自动运行。他们也全都可以手动启动，操作方法请见下图：
+它们全都可以手动启动，操作方法请见下图所示：
 
 ![](.github/action.png)
 
+其中，Paratranz同步到GitHub仓库工作流会每隔2小时，在整点会自动运行。
 
-下载译文至Github功能可自行修改`.github/workflows`文件夹中的`download_release.yml`自动执行时间，格式未cron表达式。
+下载译文至Github功能可自行修改`.github/workflows`文件夹中的`download_release.yml`自动执行时间，格式为[cron表达式](https://blog.csdn.net/Stromboli/article/details/141962560)。
+
 在有新译文后，工作流会自动生成一个artifact构件，可在action的运行页面找到并下载。此外，每天都将自动发布一次Release。
 
-github仓库同步到Paratranz很少使用，仅支持手动触发。
+github仓库同步到Paratranz很少使用，故支持手动触发。
+
+如果项目已经完成，请在仓库设置中禁用工作流运行。
