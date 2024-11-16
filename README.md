@@ -31,7 +31,8 @@ CurseForge|加载器|整合包版本|汉化维护状态
 2. 添加加密变量（Environment secrets）: 
    | 名称        | 值                                              |
    |-------------|-------------------------------------------------|
-   | API_KEY     | 你的个人Paratranz token，须有上传文件权限         |
+   | API_KEY     | 你的Paratranz token，须有上传文件权限         |
+   token可在 <https://paratranz.cn/users/my> 中的设置部分获取。
 3. 添加环境变量（Environment variables）: 
 
    | 名称   | 值                                   |
@@ -41,7 +42,7 @@ CurseForge|加载器|整合包版本|汉化维护状态
 
 ## 2. 开始使用
 
-我们的工作流有两种功能：Paratranz同步到github仓库，和github仓库同步到Paratranz。
+我们的工作流有两种功能：从Paratranz同步到github仓库和从github仓库同步到Paratranz。
 
 它们全都可以手动启动，操作方法请见下图所示：
 
@@ -51,8 +52,9 @@ CurseForge|加载器|整合包版本|汉化维护状态
 
 下载译文至Github功能可自行修改`.github/workflows`文件夹中的`download_release.yml`自动执行时间，格式为[cron表达式](https://blog.csdn.net/Stromboli/article/details/141962560)。
 
-在有新译文后，工作流会自动生成一个artifact构件，可在action的运行页面找到并下载。此外，每天都将自动发布一次Release。
+在有译文更改后，工作流会自动生成一个artifact构件，可在action的运行页面找到并下载。
+此外，每有一次译文更改都将自动发布一次标记为预发布的Release。
 
-github仓库同步到Paratranz很少使用，故支持手动触发。
+注：从github仓库同步到Paratranz的工作流很少使用，故支持手动触发。
 
-如果项目已经完成，请在仓库设置中禁用工作流运行。
+如果项目已经完成，请在仓库设置（`Settings`）中禁用工作流运行。
