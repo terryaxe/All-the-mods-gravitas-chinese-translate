@@ -47,7 +47,7 @@ CurseForge|加载器|整合包版本|汉化维护状态
 
 ![](.github/action.png)
 
-其中，Paratranz同步到GitHub仓库工作流会每隔2小时，在整点会自动运行。
+其中，Paratranz同步到GitHub仓库工作流会在北京时间每天早上9点和晚上9点自动运行。
 
 下载译文至Github功能可自行修改`.github/workflows`文件夹中的`download_release.yml`自动执行时间，格式为[cron表达式](https://blog.csdn.net/Stromboli/article/details/141962560)。
 
