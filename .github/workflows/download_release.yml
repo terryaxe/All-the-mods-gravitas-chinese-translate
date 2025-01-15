@@ -39,41 +39,35 @@ jobs:
             git add .
             git commit -m '从Paratranz同步翻译'
             git push origin main
-            echo "changed=true" > .changed
+            echo "changed=true" >> $GITHUB_ENV
           else
-            echo "changed=false" > .changed
+            echo "changed=false" >> $GITHUB_ENV
           fi
-      - name: Set output for changed
-        run: echo "changed=$(cat .changed)" >> $GITHUB_ENV
-
+    outputs:
+      changed: ${{ steps.commit.env.changed }}
   release:
     name: Create Release
     runs-on: ubuntu-latest
     needs: paratranz-to-gitHub
-    if: ${{ env.changed == 'true' }}
+    if: ${{ needs.paratranz-to-gitHub.outputs.changed == 'true' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Upload CNPack folder
         uses: actions/upload-artifact@v4
         with:
           name: CNPack
           path: ${{ github.workspace }}/CNPack
-
       - name: Get current datetime for tag
         id: datetime
         run: echo "datetime=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_ENV
-
       - name: Zip CNPack folder
         run: zip -r "${{ env.datetime }}.zip" ./CNPack
-
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: "${{ env.datetime }}.zip"
           path: "${{ env.datetime }}.zip"
-
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
