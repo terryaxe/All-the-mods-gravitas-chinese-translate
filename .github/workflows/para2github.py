@@ -73,7 +73,14 @@ def save_translation(zh_cn_dict: dict[str, str], path: Path) -> None:
     dir_path = Path("CNPack") / path.parent
     dir_path.mkdir(parents=True, exist_ok=True)
     file_path = dir_path / "zh_cn.json"
-
+    source_path = str(file_path).replace("zh_cn.json", "en_us.json").replace("CNPack", "Source")
+    with open(source_path, "r", encoding="UTF-8") as f:
+        source_json: dict = json.load(f)
+    with open(file_path, "w", encoding="UTF-8") as f:
+        keys = source_json.keys()
+        for key in keys:
+            source_json[key] = zh_cn_dict[key]
+        json.dump(source_json, f, ensure_ascii=False, indent=4, separators=(",", ":"))
     with open(file_path, "w", encoding="UTF-8") as f:
         json.dump(zh_cn_dict, f, ensure_ascii=False, indent=4, separators=(",", ":"),sort_keys = True)
 
