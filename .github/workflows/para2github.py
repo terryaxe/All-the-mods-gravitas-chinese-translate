@@ -75,7 +75,7 @@ def save_translation(zh_cn_dict: dict[str, str], path: Path) -> None:
     file_path = dir_path / "zh_cn.json"
 
     with open(file_path, "w", encoding="UTF-8") as f:
-        json.dump(zh_cn_dict, f, ensure_ascii=False, indent=4, separators=(",", ":"))
+        json.dump(zh_cn_dict, f, ensure_ascii=False, indent=4, separators=(",", ":"),sort_keys = True)
 
 
 def process_translation(file_id: int, path: Path) -> dict[str, str]:
