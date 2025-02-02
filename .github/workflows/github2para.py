@@ -20,6 +20,8 @@ async def upload_file(path, file):
                 project_id, file=file, path=path
             )
             pprint(api_response)
+        except ValidationError as error:
+            print(f"文件上传成功{path}en_us.json")
         except Exception as e:
             filePath: str = json.loads(e.__dict__.get("body"))["message"].split(" ")[1]
             for fileName in files_response:
