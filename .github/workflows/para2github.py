@@ -3,7 +3,8 @@ import os
 import re
 from pathlib import Path
 from typing import Tuple
-
+import nbtlib
+from nbtlib.tag import Compound, String, Int
 import requests
 
 TOKEN: str = os.getenv("API_TOKEN", "")
@@ -45,7 +46,7 @@ def translate(file_id: int) -> Tuple[list[str], list[str]]:
         original = item.get("original", "")
         # 优先使用翻译内容，缺失时根据 stage 使用原文
         values.append(
-            original if not translation and item["stage"] in [0, -1] else translation
+            original if item["stage"] in [0, -1, 2] or not translation else translation
         )
 
     return keys, values
@@ -84,7 +85,7 @@ def save_translation(zh_cn_dict: dict[str, str], path: Path) -> None:
             json.dump(source_json, f, ensure_ascii=False, indent=4, separators=(",", ":"))
         except IOError:
             print(f"{source_path}路径不存在，文件按首字母排序！")
-            json.dump(zh_cn_dict, f, ensure_ascii=False, indent=4, separators=(",", ":"),sort_keys=True)
+            json.dump(zh_cn_dict, f, ensure_ascii=False, indent=4, separators=(",", ":"), sort_keys=True)
 
 
 def process_translation(file_id: int, path: Path) -> dict[str, str]:
@@ -98,37 +99,129 @@ def process_translation(file_id: int, path: Path) -> dict[str, str]:
     keys, values = translate(file_id)
 
     # 手动处理文本的替换，避免反斜杠被转义
-    zh_cn_dict = {}
+    try:
+        with open("Source/" + str(path), "r", encoding="UTF-8") as f:
+            zh_cn_dict = json.load(f)
+    except IOError:
+        zh_cn_dict = {}
     for key, value in zip(keys, values):
         # 确保替换 \\u00A0 和 \\n
         value = re.sub(r"&#92;", r"\\", value)
         value = re.sub(r"\\u00A0", "\u00A0", value)  # 替换 \\u00A0 为 \u00A0
         value = re.sub(r"\\n", "\n", value)  # 替换 \\n 为换行符
+        value = re.sub(r'\\"','\"',value)
         # 保存替换后的值
         zh_cn_dict[key] = value
-
+        
     # 特殊处理：ftbquest 文件
     if "ftbquest" in path.name:
         zh_cn_dict = {
             key: value.replace(" ", "\u00A0") if "image" not in value else value
             for key, value in zip(keys, values)
         }
-
     return zh_cn_dict
+
+
+# Convert JSON data into an NBT compound structure
+def json_to_nbt(data):
+    if isinstance(data, dict):
+        return Compound({key: json_to_nbt(value) for key, value in data.items()})
+    elif isinstance(data, list):
+        return nbtlib.tag.List[nbtlib.tag.String]([json_to_nbt(item) for item in data])
+    elif isinstance(data, str):
+        return String(data)
+    elif isinstance(data, int):
+        return Int(data)
+    else:
+        raise ValueError(f"Unsupported data type: {type(data)}")
+
+
+# Pretty-print SNBT with indentation and wrap all values in double quotes
+def format_snbt(nbt_data, indent=0):
+    INDENT_SIZE = 4  # Number of spaces for each indent level
+    indent_str = ' ' * indent
+
+    if isinstance(nbt_data, Compound):
+        formatted = ['{']
+        for key, value in nbt_data.items():
+            formatted.append(f'\n{indent_str}{" " * INDENT_SIZE}{key}:{format_snbt(value, indent + INDENT_SIZE)}')
+        formatted.append(f'\n{indent_str}}}')
+        return ''.join(formatted)
+
+    elif isinstance(nbt_data, nbtlib.tag.List):
+        formatted = ['[']
+        for item in nbt_data:
+            formatted.append(f'\n{indent_str}{" " * INDENT_SIZE}{format_snbt(item, indent + INDENT_SIZE)}')
+        formatted.append(f'\n{indent_str}]')
+        return ''.join(formatted)
+
+    else:
+        # Wrap all primitive types (String/Int) in double quotes
+        return f'"{str(nbt_data)}"'
+
+
+def escape_quotes(data):
+    if isinstance(data, dict):
+        return {key: escape_quotes(value) for key, value in data.items()}
+    elif isinstance(data, list):
+        return [escape_quotes(item) for item in data]
+    elif isinstance(data, str):
+        return data.replace('"', '\\"')
+    else:
+        return data
+
+
+def normal_json2_ftb_desc(origin_en_us):
+    en_json = json.dumps(origin_en_us, ensure_ascii=False, indent=4, separators=(",", ":"))
+    en_json = eval(en_json)
+    temp_set = set()
+    temp_en_json = {}
+    for key, value in list(en_json.items()):
+        if "desc" in key:
+            key_id = key.split(".")[1]
+            temp_json_array = []
+            for k in en_json.keys():
+                if f"{key_id}.quest_desc" in k:
+                    temp_json_array.append(en_json[k])
+            new_key = f"quest.{key_id}.quest_desc"
+            temp_en_json[new_key] = temp_json_array
+            temp_set.add(key)
+    for key in temp_set:
+        en_json.pop(key, None)
+    en_json.update(temp_en_json)
+
+    print("NormalJson2FtbDesc end...")
+    return en_json
 
 
 def main() -> None:
     get_files()
-
+    ftbquests_dict = {}
     for file_id, path in zip(file_id_list, file_path_list):
         if "TM" in path:  # 跳过 TM 文件
             continue
-
         zh_cn_dict = process_translation(file_id, Path(path))
         zh_cn_list.append(zh_cn_dict)
-
+        if "kubejs/assets/quests/lang/" in path:
+            ftbquests_dict = ftbquests_dict | zh_cn_dict
+            continue;
         save_translation(zh_cn_dict, Path(path))
         print(f"已从Patatranz下载到仓库：{re.sub('en_us.json', 'zh_cn.json', path)}")
+    if(len(ftbquests_dict) > 0):
+        snbt_dict = normal_json2_ftb_desc(ftbquests_dict)
+
+        # json_data = json.dumps(snbt_dict,ensure_ascii=False, indent=4, separators=(",", ":"))
+        # Escape quotation marks in the translated data
+        json_data = escape_quotes(snbt_dict)
+
+        # Convert the loaded JSON data to NBT format
+        nbt_data = json_to_nbt(json_data)
+
+        # Format the NBT structure as a pretty-printed SNBT string
+        formatted_snbt_string = format_snbt(nbt_data)
+        # Optionally save the formatted SNBT to a file
+        with open('CNPack/config/ftbquests/quests/lang/zh_cn.snbt', 'w', encoding='utf-8') as snbt_file:
+            snbt_file.write(formatted_snbt_string)
 
 
 if __name__ == "__main__":

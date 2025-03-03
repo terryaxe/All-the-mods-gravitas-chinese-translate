@@ -34,7 +34,7 @@ def get_filelist(dir):
     filelist = []
     for root, _, files in os.walk(dir):
         for file in files:
-            if file.endswith("en_us.json"):
+            if "en_us" in file and file.endswith(".json"):
                 filelist.append(os.path.join(root, file))
     return filelist
 
