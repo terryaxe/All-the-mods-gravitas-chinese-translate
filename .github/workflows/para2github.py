@@ -104,21 +104,21 @@ def process_translation(file_id: int, path: Path) -> dict[str, str]:
             zh_cn_dict = json.load(f)
     except IOError:
         zh_cn_dict = {}
+
+    # 检查路径是否包含quests
+    is_quest_file = "quests" in str(path)
+
     for key, value in zip(keys, values):
         # 确保替换 \\u00A0 和 \\n
-        value = re.sub(r"&#92;", r"\\", value)
-        value = re.sub(r"\\u00A0", "\u00A0", value)  # 替换 \\u00A0 为 \u00A0
-        value = re.sub(r"\\n", "\n", value)  # 替换 \\n 为换行符
         value = re.sub(r'\\"','\"',value)
+
+        # 对quest文件进行特殊处理
+        if is_quest_file and "image" not in value:
+            value = value.replace(" ", "\u00A0")
+        
         # 保存替换后的值
         zh_cn_dict[key] = value
-        
-    # 特殊处理：ftbquest 文件
-    if "ftbquest" in path.name:
-        zh_cn_dict = {
-            key: value.replace(" ", "\u00A0") if "image" not in value else value
-            for key, value in zip(keys, values)
-        }
+    
     return zh_cn_dict
 
 
