@@ -44,17 +44,19 @@ CurseForge|加载器|整合包版本|汉化维护状态
 
 我们的工作流有两种功能：从Paratranz同步到github仓库和从github仓库同步到Paratranz。
 
-它们全都可以手动启动，操作方法请见下图所示：
+它们全都可以手动运行，操作方法如下图所示：
 
 ![](.github/action.png)
 
-其中，Paratranz同步到GitHub仓库工作流会在北京时间每天早上9点和晚上9点自动运行。
+其中，Paratranz同步到GitHub仓库工作流会在北京时间每天早晚上10点左右自动运行。
 
 下载译文至Github功能可自行修改`.github/workflows`文件夹中的`download_release.yml`自动执行时间，格式为[cron表达式](https://blog.csdn.net/Stromboli/article/details/141962560)。
 
-在有译文更改后，工作流会自动生成一个artifact构件，可在action的运行页面找到并下载。
-此外，每有一次译文更改都将自动发布一次标记为预发布的Release。
+在有译文更改后，工作流会自动发布一次标记为预发布的Release供大家测试。此外，每次从上游同步还将运行一次FTB任务颜色字符检查程序，
+当有颜色字符错误时，将会在release的说明页面中进行提示，并在工作流的构件（artifact）页和release页面上传错误报告的html，相关人员可下载并通过浏览器打开该文件。
 
-注：从github仓库同步到Paratranz的工作流很少使用，故支持手动触发。
+当没有检查到颜色错误时，工作流详情页内会出现警告，提示找不到错误报告文件，这一点无需担心，不会造成任何负面影响。
+
+注：从github仓库同步到Paratranz的工作流很少使用，故仅支持手动触发。
 
 如果项目已经完成，请在仓库设置（`Settings`）中禁用工作流运行。
