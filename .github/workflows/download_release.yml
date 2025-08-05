@@ -55,20 +55,35 @@ jobs:
             echo "error_report_exists=false" >> $GITHUB_ENV
           fi
         
-      - name: Commit and Push changes (excluding error report)
+      - name: Commit and Push changes
         id: commit
         run: |
-          git rm --cached error_report.html || true
-          git rm -r --cached .github/workflows/__pycache__/ || true
-          if [[ -n $(git status -s) ]]; then
-            git add .
-            git commit -m '从Paratranz同步翻译'
-            git pull --rebase origin main || exit 1
-            git push
-            echo "changed=true" >> $GITHUB_OUTPUT
-          else
+          # 检查工作区，如果没有任何更改，则提前退出
+          if [[ -z $(git status --porcelain) ]]; then
+            echo "No changes detected from Paratranz. Nothing to commit."
             echo "changed=false" >> $GITHUB_OUTPUT
+            exit 0
           fi
+
+          # 如果有更改，则继续执行
+          echo "Changes detected. Preparing to commit..."
+
+          # 在暂存所有更改之前，从 Git 缓存中移除不需要的文件
+          # 这样可以避免 "changes not staged for commit" 的警告
+          git rm -r --cached --ignore-unmatch .github/workflows/__pycache__/
+          git rm --cached --ignore-unmatch error_report.html
+
+          # 添加所有更改并提交
+          git add .
+          git commit -m '从Paratranz同步翻译'
+
+          # 推送前先拉取远程更改，避免冲突
+          git pull --rebase origin main
+
+          # 推送到远程仓库
+          git push
+
+          echo "changed=true" >> $GITHUB_OUTPUT
 
       - name: Upload Error Report Artifact
         if: ${{ env.error_report_exists == 'true' }}
