@@ -1,0 +1,11 @@
+{
+    "block.create_new_age.fluxuated_magnetite":"Advanced Neodymium Magnet",
+    "block.create_new_age.generator_coil":"Rotor Coil",
+    "block.create_new_age.layered_magnet":"Neodymium Iron Magnet",
+    "block.create_new_age.magnetite_block":"Ferrite Magnet",
+    "block.create_new_age.netherite_magnet":"Samarium Cobalt Magnet",
+    "block.create_new_age.redstone_magnet":"Redstone Magnet",
+    "item.create_new_age.overcharged_diamond_wire":"Overcharged Graphene Wire",
+    "item.create_new_age.overcharged_golden_wire":"Neodymium Wire",
+    "item.create_new_age.overcharged_iron_wire":"Iron Wire"
+}

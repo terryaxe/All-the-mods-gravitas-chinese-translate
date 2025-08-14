@@ -1,0 +1,15 @@
+{
+    "default_autoclaim_rewards":"disabled",
+    "default_quest_shape":"circle",
+    "detection_delay":"$number$20",
+    "emergency_items_cooldown":"$number$300",
+    "grid_scale":"$number$0.5d",
+    "icon":"allthetweaks:greg_star",
+    "lock_message":"",
+    "loot_crate_no_drop->boss":"$number$0",
+    "loot_crate_no_drop->monster":"$number$600",
+    "loot_crate_no_drop->passive":"$number$4000",
+    "progression_mode":"flexible",
+    "title":"{gregitas.modpack.title}",
+    "version":"$number$13"
+}
