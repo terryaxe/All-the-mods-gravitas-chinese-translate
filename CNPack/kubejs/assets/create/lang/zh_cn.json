@@ -11,7 +11,7 @@
     "block.create.small_andesite_brick_stairs":"Small Igneous Zinc Brick Stairs",
     "block.create.small_andesite_brick_wall":"Small Igneous Zinc Brick Wall",
     "block.create.small_andesite_bricks":"Small Igneous Zinc Bricks",
-    "item.create.andesite_alloy":"Igneous Zinc Alloy",
-    "item.create.electron_tube":"Primitive Electron Tube",
+    "item.create.andesite_alloy":"火成锌合金",
+    "item.create.electron_tube":"原始电子管",
     "item.create.super_glue":"Glue Tube"
 }
