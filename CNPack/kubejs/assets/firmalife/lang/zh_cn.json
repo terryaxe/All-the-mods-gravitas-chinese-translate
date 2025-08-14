@@ -1,10 +1,10 @@
 {
-    "block.firmalife.stainless_steel_greenhouse_door":"Aluminium Greenhouse Door",
-    "block.firmalife.stainless_steel_greenhouse_panel_roof":"Aluminium Greenhouse Panel Roof",
-    "block.firmalife.stainless_steel_greenhouse_panel_wall":"Aluminium Greenhouse Panel Wall",
-    "block.firmalife.stainless_steel_greenhouse_port":"Aluminium Greenhouse Port",
-    "block.firmalife.stainless_steel_greenhouse_roof":"Aluminium Greenhouse Roof",
-    "block.firmalife.stainless_steel_greenhouse_roof_top":"Aluminium Greenhouse Roof Top",
-    "block.firmalife.stainless_steel_greenhouse_trapdoor":"Aluminium Greenhouse Trapdoor",
-    "block.firmalife.stainless_steel_greenhouse_wall":"Aluminium Greenhouse Wall"
+    "block.firmalife.stainless_steel_greenhouse_door":"铝制温室门",
+    "block.firmalife.stainless_steel_greenhouse_panel_roof":"铝制温室顶板",
+    "block.firmalife.stainless_steel_greenhouse_panel_wall":"铝制温室板墙",
+    "block.firmalife.stainless_steel_greenhouse_port":"铝制温室接口",
+    "block.firmalife.stainless_steel_greenhouse_roof":"铝制温室屋檐",
+    "block.firmalife.stainless_steel_greenhouse_roof_top":"铝制温室屋顶",
+    "block.firmalife.stainless_steel_greenhouse_trapdoor":"铝制温室活板门",
+    "block.firmalife.stainless_steel_greenhouse_wall":"铝制温室墙"
 }

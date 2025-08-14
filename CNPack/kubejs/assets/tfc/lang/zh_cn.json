@@ -1,6 +1,6 @@
 {
-    "metal.tfc.igneous_alloy":"Igneous Zinc Alloy",
-    "tfc.jei.flint_knapping":"Flint Knapping",
-    "tfc.jei.rubber_knapping":"Rubber & Plastic Knapping",
-    "tfc.recipe.barrel.gregitas.barrel.creosote_treated_lumber":"Creosote Treated Lumber"
+    "metal.tfc.igneous_alloy":"火成岩锌合金",
+    "tfc.jei.flint_knapping":"石器加工",
+    "tfc.jei.rubber_knapping":"橡胶&塑料加工",
+    "tfc.recipe.barrel.gregitas.barrel.creosote_treated_lumber":"防腐处理木材"
 }
