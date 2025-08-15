@@ -1,0 +1,10 @@
+{
+    "block.coldsgrappler.grappler_block":"Grappler Anchor Block",
+    "block.coldsgrappler.grappler_rope":"Grappler Rope Block",
+    "item.coldsgrappler.extra_rope_item":"Extra Rope",
+    "item.coldsgrappler.grappler_item":"Grappler",
+    "item.coldsgrappler.rope_light_item":"Rope Light",
+    "tooltip.coldgrappler.extend":"Extends the length of the rope you are on",
+    "tooltip.coldgrappler.grappleruse":"Use: Throw the rope",
+    "tooltip.coldgrappler.lamp":"Adds a light to the rope"
+}
