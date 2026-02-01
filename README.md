@@ -14,6 +14,9 @@
 
 译者：[查看贡献者排行榜](https://paratranz.cn/projects/项目/leaderboard)
 
+# 授权
+<img width="1472" height="572" alt="QQ_1769935596874" src="https://github.com/user-attachments/assets/e6432d97-e866-4fe3-b37b-c597966f3a35" />
+
 # 整合包介绍
 
 Per aspera ad astra - 仰望星空，脚踏实地。
