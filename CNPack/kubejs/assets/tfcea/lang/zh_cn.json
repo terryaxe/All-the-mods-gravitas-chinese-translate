@@ -1,0 +1,7 @@
+{
+    "block.tfcea.refrigerator":"冰箱",
+    "item.tfcea.appliances.portable_refrigerator":"便携式冰箱",
+    "itemGroup.tfcea.creative_tab":"Tfc电力组件",
+    "tooltip.tfcea.food_trait.refrigerating":"冷冻",
+    "tooltip.tfcea.toggle":"开/关"
+}
