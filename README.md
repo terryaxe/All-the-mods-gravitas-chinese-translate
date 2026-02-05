@@ -14,6 +14,9 @@
 
 译者：[查看贡献者排行榜](https://paratranz.cn/projects/项目/leaderboard)
 
+# 特别感谢
+<img width="680" height="379" alt="QQ_1770292315677" src="https://github.com/user-attachments/assets/64b21be5-b552-4cde-8a76-082691e20fd7" />
+
 # 授权
 <img width="1472" height="572" alt="QQ_1769935596874" src="https://github.com/user-attachments/assets/e6432d97-e866-4fe3-b37b-c597966f3a35" />
 
