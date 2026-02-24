@@ -4,7 +4,7 @@
 
 | CurseForge     | 加载器     | 整合包版本         | 汉化维护状态 |
 | :------------- | :--------- | :----------------- | :----------- |
-| [链接](https://www.curseforge.com/minecraft/modpacks/all-the-mods-gravitas2) | forge | 1.20.1-0.7.2 | 翻译中       |
+| [链接](https://www.curseforge.com/minecraft/modpacks/all-the-mods-gravitas2) | forge | 1.20.1-0.9.3a | 翻译中       |
 
 ---
 
